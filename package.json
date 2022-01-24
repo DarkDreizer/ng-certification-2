@@ -26,7 +26,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prettier": "pretty-quick --pattern \"src/**/*.{ts,js,scss,html}\" --staged --verbose"
+    "prettier": "pretty-quick --pattern \"src/**/*.{ts,js,scss,html}\" --staged --verbose",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.x",
@@ -37,6 +38,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.20.38",
     "codelyzer": "~4.5.0",
+    "husky": "^7.0.4",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
