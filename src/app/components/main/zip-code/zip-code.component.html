@@ -1,0 +1,38 @@
+<div class="well">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Enter a zipcode:</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <input
+        class="form-control"
+        [formControl]="zipCodeControl"
+        placeholder="Zipcode"
+        type="text"
+        id="addLocation"
+        minlength="5"
+        maxlength="5"
+      />
+    </div>
+    <div class="col-xs-2">
+      <button
+        [disabled]="zipCodeControl.invalid"
+        class="btn btn-primary"
+        id="addLocationBtn"
+        (click)="submitCode()"
+      >
+        Add location
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div
+      *ngIf="zipCodeControl.invalid && zipCodeControl.dirty"
+      class="col-xs-12 alert"
+    >
+      Only US zip codes allowed, please enter a valid 5 digit code.
+    </div>
+  </div>
+</div>
