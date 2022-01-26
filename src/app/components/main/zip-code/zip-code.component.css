@@ -1,0 +1,14 @@
+@import '../../../../styles/_global.css';
+
+h2 {
+  margin-top: 0;
+}
+
+.ng-invalid:not(form).ng-dirty {
+  border: 1px solid #d63532;
+}
+
+.alert {
+  color: #d63532;
+  margin-bottom: 0;
+}

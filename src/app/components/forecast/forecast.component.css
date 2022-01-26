@@ -1,1 +1,5 @@
-@import '~src/styles/global';
+@import '../../../styles/_global.css';
+
+h4 {
+  margin-left: 15px;
+}

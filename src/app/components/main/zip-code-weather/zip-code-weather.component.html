@@ -1,0 +1,34 @@
+<div *ngIf="weathers?.length">
+  <ng-container *ngFor="let weather of weathers">
+    <div class="well flex" *ngIf="!weather.message; else noInfo">
+      <div>
+        <h3>{{ weather.name }} ({{ weather.zipCode }})</h3>
+        <h4>Current conditions: {{ weather.weather[0].main }}</h4>
+        <h4>Temperatures today:</h4>
+        <p>
+          Current {{ weather.main.temp | number: '1.0-0' }}°C - Max
+          {{ weather.main.temp_max | number: '1.0-0' }}°C - Min
+          {{ weather.main.temp_min | number: '1.0-0' }}°C
+        </p>
+        <p>
+          <a [routerLink]="'/forecast/' + weather.zipCode"
+            >Show 5-day forecast for {{ weather.name }}</a
+          >
+        </p>
+      </div>
+      <div>
+        <span class="close" (click)="removeWeather(weather.zipCode)">×</span>
+        <img [src]="retrieveIcon(weather.weather[0].icon)" />
+      </div>
+    </div>
+    <ng-template #noInfo>
+      <div class="well flex">
+        <h3>
+          {{ weather.message }} ({{ weather.zipCode }}), please check the zip
+          code is valid.
+        </h3>
+        <span class="close" (click)="removeWeather(weather.zipCode)">×</span>
+      </div>
+    </ng-template>
+  </ng-container>
+</div>
