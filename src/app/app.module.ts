@@ -13,9 +13,16 @@ import { ZipCodeComponent } from './components/main/zip-code/zip-code.component'
 import { ZipCodeWeatherComponent } from './components/main/zip-code-weather/zip-code-weather.component';
 import { CodesService } from './services/codes/codes.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { WeatherService } from './services/weather/weather.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+  ],
   declarations: [
     AppComponent,
     HelloComponent,
@@ -29,6 +36,7 @@ import { LocalStorageService } from './services/local-storage/local-storage.serv
     { provide: APP_BASE_HREF, useValue: '/' },
     CodesService,
     LocalStorageService,
+    WeatherService,
   ],
   bootstrap: [AppComponent],
 })

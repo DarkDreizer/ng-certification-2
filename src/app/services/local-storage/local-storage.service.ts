@@ -9,4 +9,12 @@ export class LocalStorageService {
   set codes(codes: string) {
     localStorage.setItem('ZipCodes', codes);
   }
+
+  get weathers(): string {
+    return localStorage.getItem('Weathers');
+  }
+
+  set weathers(weathers: string) {
+    localStorage.setItem('Weathers', weathers);
+  }
 }

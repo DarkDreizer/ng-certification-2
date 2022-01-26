@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 
 @Injectable()
 export class CodesService {
   private _codes: Set<number> = new Set<number>();
-  private _codes$ = new Subject<number[]>();
+  private _codes$ = new BehaviorSubject<number[]>([]);
   constructor(private storage: LocalStorageService) {
     const storedZipCodes = this.storage.codes;
     if (storedZipCodes) {
       this._codes = new Set(JSON.parse(storedZipCodes));
+      this._codes$.next(Array.from(this._codes));
     }
-    this._codes$.next(Array.from(this._codes));
   }
 
   get currentCodes(): Observable<number[]> {
@@ -20,6 +20,11 @@ export class CodesService {
 
   set newCode(code: number) {
     this._codes.add(code);
+    this._codes$.next(Array.from(this._codes));
+  }
+
+  removeCode(code: number): void {
+    this._codes.delete(code);
     this._codes$.next(Array.from(this._codes));
   }
 }

@@ -10,13 +10,14 @@ import { LocalStorageService } from '../../../services/local-storage/local-stora
   styleUrls: ['./zip-code.component.css'],
 })
 export class ZipCodeComponent implements OnInit, OnDestroy {
+  private _ngUnsubscribe$ = new Subject();
+
   zipCodeControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(5),
     Validators.maxLength(5),
     Validators.pattern('^[0-9]+$'),
   ]);
-  private _ngUnsubscribe$ = new Subject();
 
   constructor(
     private codes: CodesService,
