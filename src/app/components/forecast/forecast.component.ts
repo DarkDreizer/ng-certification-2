@@ -24,12 +24,12 @@ export class ForecastComponent implements OnInit {
           return this.weather.getForecast(this.zipCode);
         })
       )
-      .subscribe(
-        (data) => (this.forecast = data),
-        () =>
+      .subscribe({
+        next: (data) => (this.forecast = data),
+        error: () =>
           (this.dataError =
-            'There was an error while retrieving the data, please go back to the main page and try again.')
-      );
+            'There was an error while retrieving the data, please go back to the main page and try again.'),
+      });
   }
 
   retrieveIcon(icon: string): string {
