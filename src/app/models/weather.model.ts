@@ -38,14 +38,15 @@ export interface WeatherMain {
   humidity: number;
   temp_min: number;
   temp_max: number;
-  sea_level: number;
-  grnd_level: number;
+  sea_level?: number;
+  grnd_level?: number;
+  temp_kf?: number;
 }
 
 export interface WeatherWind {
   speed: number;
   deg: number;
-  gust: number;
+  gust?: number;
 }
 
 export interface WeatherClouds {
@@ -53,19 +54,19 @@ export interface WeatherClouds {
 }
 
 export interface WeatherRain {
-  '1h': number;
+  '1h'?: number;
   '3h': number;
 }
 
 export interface WeatherSnow {
-  '1h': number;
+  '1h'?: number;
   '3h': number;
 }
 
 export interface WeatherSys {
   type: number;
   id: number;
-  message: string;
+  message?: string;
   country: string;
   sunrise: number;
   sunset: number;

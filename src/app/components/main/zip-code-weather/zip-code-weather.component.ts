@@ -12,6 +12,7 @@ import { WeatherResponse } from '../../../models/weather.model';
 import { CodesService } from '../../../services/codes/codes.service';
 import { LocalStorageService } from '../../../services/local-storage/local-storage.service';
 import { WeatherService } from '../../../services/weather/weather.service';
+import { weatherIcon } from '../../../utils/weather-icon';
 
 @Component({
   selector: 'app-zip-code-weather',
@@ -62,17 +63,7 @@ export class ZipCodeWeatherComponent implements OnInit, OnDestroy {
   }
 
   retrieveIcon(icon: string): string {
-    const code = Number(icon.slice(0, icon.length - 1));
-    switch (true) {
-      case code > 1 && code < 5:
-        return 'https://www.angulartraining.com/images/weather/clouds.png';
-      case code > 8 && code < 12:
-        return 'https://www.angulartraining.com/images/weather/rain.png';
-      case code === 13:
-        return 'https://www.angulartraining.com/images/weather/snow.png';
-      default:
-        return 'https://www.angulartraining.com/images/weather/sun.png';
-    }
+    return weatherIcon(icon);
   }
 
   removeWeather(code: number): void {

@@ -1,4 +1,6 @@
-export const mockWeathers = [
+import { WeatherResponse } from '../models/weather.model';
+
+export const mockWeathers: Partial<WeatherResponse>[] = [
   {
     zipCode: 12352,
     message: 'No weather information for',

@@ -11,7 +11,7 @@
           {{ weather.main.temp_min | number: '1.0-0' }}°C
         </p>
         <p>
-          <a href="/forecast/95742"
+          <a [routerLink]="'/forecast/' + weather.zipCode"
             >Show 5-day forecast for {{ weather.name }}</a
           >
         </p>

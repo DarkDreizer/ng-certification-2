@@ -32,12 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     ZipCodeComponent,
     ZipCodeWeatherComponent,
   ],
-  providers: [
-    { provide: APP_BASE_HREF, useValue: '/' },
-    CodesService,
-    LocalStorageService,
-    WeatherService,
-  ],
+  providers: [CodesService, LocalStorageService, WeatherService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
