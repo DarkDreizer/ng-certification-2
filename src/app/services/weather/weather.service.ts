@@ -18,7 +18,7 @@ export class WeatherService {
 
   getForecast(code: number): Observable<ForecastResponse> {
     return this.http.get<ForecastResponse>(
-      `${environment.weatherAPI}forecast?zip=${code}&appid=${this.apiKey}&units=metric`
+      `${environment.weatherAPI}forecast/daily?zip=${code}&appid=${this.apiKey}&units=metric&cnt=5`
     );
   }
 }
