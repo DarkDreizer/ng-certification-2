@@ -17,12 +17,13 @@
         </p>
       </div>
       <div>
-        <span class="close">×</span>
+        <span class="close" (click)="removeWeather(weather.zipCode)">×</span>
         <img [src]="retrieveIcon(weather.weather[0].icon)" />
       </div>
     </div>
     <ng-template #noInfo>
       <div class="well flex">
+        <span class="close" (click)="removeWeather(weather.zipCode)">×</span>
         <h3>
           {{ weather.message }} ({{ weather.zipCode }}), please check the zip
           code is valid.

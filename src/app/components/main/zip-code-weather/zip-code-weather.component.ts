@@ -29,20 +29,12 @@ export class ZipCodeWeatherComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const storedWeathers = this.storage.weathers;
-    if (storedWeathers) {
-      this.weathers = [...JSON.parse(storedWeathers)];
-    }
     this.codes.currentCodes
       .pipe(
         takeUntil(this._ngUnsubscribe$),
         switchMap((codesArray) => {
-          const missingCodes = codesArray.filter(
-            (code) =>
-              !this.weathers.map((sWeather) => sWeather.zipCode).includes(code)
-          );
           return forkJoin(
-            missingCodes.map((code) =>
+            codesArray.map((code) =>
               this.weather.getCodeWeather(code).pipe(
                 catchError((error) =>
                   of({
@@ -59,9 +51,14 @@ export class ZipCodeWeatherComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((newWeathers) => {
-        this.weathers = [...this.weathers, ...newWeathers];
+        this.weathers = newWeathers;
         this.storage.weathers = JSON.stringify(this.weathers);
       });
+  }
+
+  ngOnDestroy(): void {
+    this._ngUnsubscribe$.next(true);
+    this._ngUnsubscribe$.complete();
   }
 
   retrieveIcon(icon: string): string {
@@ -78,8 +75,7 @@ export class ZipCodeWeatherComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    this._ngUnsubscribe$.next(true);
-    this._ngUnsubscribe$.complete();
+  removeWeather(code: number): void {
+    this.codes.removeCode(code);
   }
 }
