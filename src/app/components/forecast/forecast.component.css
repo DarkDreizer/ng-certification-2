@@ -3,3 +3,7 @@
 h4 {
   margin-left: 15px;
 }
+
+.error {
+  color: #d63532;
+}

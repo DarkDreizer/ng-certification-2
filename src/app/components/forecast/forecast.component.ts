@@ -13,6 +13,7 @@ import { weatherIcon } from '../../utils/weather-icon';
 export class ForecastComponent implements OnInit {
   forecast!: ForecastResponse;
   zipCode!: number;
+  dataError!: string;
   constructor(private route: ActivatedRoute, private weather: WeatherService) {}
 
   ngOnInit(): void {
@@ -23,7 +24,12 @@ export class ForecastComponent implements OnInit {
           return this.weather.getForecast(this.zipCode);
         })
       )
-      .subscribe((data) => (this.forecast = data));
+      .subscribe(
+        (data) => (this.forecast = data),
+        () =>
+          (this.dataError =
+            'There was an error while retrieving the data, please go back to the main page and try again.')
+      );
   }
 
   retrieveIcon(icon: string): string {
