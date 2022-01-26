@@ -10,7 +10,6 @@ import {
 } from 'rxjs';
 import { WeatherResponse } from '../../../models/weather.model';
 import { CodesService } from '../../../services/codes/codes.service';
-import { LocalStorageService } from '../../../services/local-storage/local-storage.service';
 import { WeatherService } from '../../../services/weather/weather.service';
 import { weatherIcon } from '../../../utils/weather-icon';
 
@@ -23,11 +22,7 @@ export class ZipCodeWeatherComponent implements OnInit, OnDestroy {
   private _ngUnsubscribe$ = new Subject();
 
   weathers: Partial<WeatherResponse>[] = [];
-  constructor(
-    private codes: CodesService,
-    private weather: WeatherService,
-    private storage: LocalStorageService
-  ) {}
+  constructor(private codes: CodesService, private weather: WeatherService) {}
 
   ngOnInit(): void {
     this.codes.currentCodes
@@ -53,7 +48,6 @@ export class ZipCodeWeatherComponent implements OnInit, OnDestroy {
       )
       .subscribe((newWeathers) => {
         this.weathers = newWeathers;
-        this.storage.weathers = JSON.stringify(this.weathers);
       });
   }
 
