@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="loader" *ngIf="!forecast; else forecastDetails">Loading</div>
+  <ng-template #forecastDetails>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">5-day forecast for {{ forecast.city.name }}</h3>
+      </div>
+      <ul class="list-group">
+        <!---->
+        <li class="list-group-item" *ngFor="let day of forecast.list">
+          {{ day.dt_txt | date: 'EEEE, MMM d h:mm a' }}:
+          {{ day.weather[0].main }} - Min:
+          {{ day.main.temp_min | number: '1.0-0' }}°C - Max:
+          {{ day.main.temp_max | number: '1.0-0' }}°C
+
+          <img class="icon" [src]="retrieveIcon(day.weather[0].icon)" />
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+  <div class="error" *ngIf="dataError">
+    <p>{{ dataError }}</p>
+  </div>
+  <button class="btn btn-success" tabindex="0" id="mainPageBtn" routerLink="/">
+    &lt; Back to main page
+  </button>
+</div>
