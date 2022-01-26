@@ -1,12 +1,4 @@
-import {
-  Weather,
-  WeatherClouds,
-  WeatherCoordinates,
-  WeatherMain,
-  WeatherRain,
-  WeatherSnow,
-  WeatherWind,
-} from './weather.model';
+import { Weather, WeatherCoordinates } from './weather.model';
 
 export interface ForecastResponse {
   cod: string;
@@ -17,19 +9,19 @@ export interface ForecastResponse {
 }
 
 export interface Forecast {
+  clouds: number;
+  deg: number;
   dt: number;
-  main: WeatherMain;
-  weather: Weather[];
-  clouds: WeatherClouds;
-  wind: WeatherWind;
-  visibility: number;
+  feels_like: ForecastFeelsLike;
+  gust: number;
+  humidity: number;
   pop: number;
-  rain: WeatherRain;
-  snow: WeatherSnow;
-  sys: {
-    pod: string;
-  };
-  dt_txt: string;
+  pressure: number;
+  speed: number;
+  sunrise: number;
+  sunset: number;
+  temp: ForecastTemp;
+  weather: Weather[];
 }
 
 export interface ForecastCity {
@@ -38,6 +30,20 @@ export interface ForecastCity {
   coord: WeatherCoordinates;
   country: string;
   timezone: number;
-  sunrise: number;
-  sunset: number;
+}
+
+export interface ForecastFeelsLike {
+  day: number;
+  eve: number;
+  morn: number;
+  night: number;
+}
+
+export interface ForecastTemp {
+  day: number;
+  eve: number;
+  max: number;
+  min: number;
+  morn: number;
+  night: number;
 }
